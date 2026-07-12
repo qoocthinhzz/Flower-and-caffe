@@ -1,0 +1,3588 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Flower & Coffee Shop</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+  <!--================ CÀI ĐẶT HỆ THỐNG =================-->
+
+<section id="setting">
+
+<h2 class="title">⚙️ Cài Đặt Hệ Thống</h2>
+
+<div style="background:#fff;padding:25px;border-radius:20px;box-shadow:0 10px 20px rgba(0,0,0,.08);">
+
+<label>
+
+<input type="checkbox" checked>
+
+Cho phép thông báo
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox" checked>
+
+Tự động lưu dữ liệu
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox">
+
+Chế độ tiết kiệm pin
+
+</label>
+
+<br><br>
+
+<label>
+
+<input type="checkbox">
+
+Hiển thị hiệu ứng hoa rơi
+
+</label>
+
+</div>
+
+</section>
+
+<!--================ SAO LƯU =================-->
+
+<section>
+
+<h2 class="title">
+
+💾 Sao Lưu Dữ Liệu
+
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="card-body">
+
+<h3>📤 Xuất dữ liệu</h3>
+
+<p>Sao lưu LocalStorage.</p>
+
+<button class="buy"
+
+onclick="backupData()">
+
+Xuất dữ liệu
+
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-body">
+
+<h3>📥 Khôi phục</h3>
+
+<p>Khôi phục dữ liệu.</p>
+
+<button class="buy"
+
+onclick="restoreData()">
+
+Khôi phục
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!--================ NHẬT KÝ =================-->
+
+<section>
+
+<h2 class="title">
+
+📜 Nhật Ký Hoạt Động
+
+</h2>
+
+<div id="logs"
+
+style="background:white;padding:20px;border-radius:20px;height:250px;overflow:auto;">
+
+</div>
+
+</section>
+
+<script>
+
+let logs=JSON.parse(localStorage.getItem("logs"))||[];
+
+function addLog(text){
+
+logs.push(
+
+new Date().toLocaleString()
+
++" : "+text
+
+);
+
+localStorage.setItem(
+
+"logs",
+
+JSON.stringify(logs)
+
+);
+
+renderLog();
+
+}
+
+function renderLog(){
+
+let html="";
+
+logs.forEach(l=>{
+
+html+="<p>📝 "+l+"</p>";
+
+});
+
+logsDiv=document.getElementById("logs");
+
+logsDiv.innerHTML=html;
+
+}
+
+renderLog();
+
+function backupData(){
+
+let data={
+
+products,
+
+orders,
+
+imports,
+
+exportsData,
+
+bookings,
+
+feedbacks
+
+};
+
+localStorage.setItem(
+
+"backup",
+
+JSON.stringify(data)
+
+);
+
+addLog("Đã sao lưu dữ liệu");
+
+alert("Đã sao lưu!");
+
+}
+
+function restoreData(){
+
+let b=localStorage.getItem("backup");
+
+if(!b){
+
+alert("Không có bản sao lưu");
+
+return;
+
+}
+
+addLog("Đã khôi phục dữ liệu");
+
+alert("Khôi phục thành công!");
+
+}
+
+</script>
+
+<!--================ THÔNG TIN =================-->
+
+<section>
+
+<h2 class="title">
+
+ℹ️ Thông Tin Hệ Thống
+
+</h2>
+
+<div class="dashboard">
+
+<div class="box">
+
+<h2>Version 1.0</h2>
+
+<p>Flower Coffee</p>
+
+</div>
+
+<div class="box">
+
+<h2>HTML</h2>
+
+<p>CSS + JavaScript</p>
+
+</div>
+
+<div class="box">
+
+<h2>LocalStorage</h2>
+
+<p>Lưu dữ liệu</p>
+
+</div>
+
+<div class="box">
+
+<h2>2025</h2>
+
+<p>Bản quyền</p>
+
+</div>
+
+</div>
+
+</section>
+
+background:linear-gradient(135deg,#fff7f5,#fffef8,#f7fff8);
+
+overflow-x:hidden;
+
+}
+
+header{
+
+height:80px;
+
+background:#ffffffee;
+
+backdrop-filter:blur(20px);
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:0 40px;
+
+position:sticky;
+
+top:0;
+
+z-index:999;
+
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+}
+
+.logo{
+
+font-size:30px;
+
+font-weight:700;
+
+color:#ff5f7e;
+
+}
+
+nav a{
+
+text-decoration:none;
+
+margin:0 15px;
+
+color:#444;
+
+font-weight:500;
+
+transition:.3s;
+
+}
+
+nav a:hover{
+
+color:#ff5f7e;
+
+}
+
+.hero{
+
+height:520px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+text-align:center;
+
+background:linear-gradient(rgba(255,255,255,.4),rgba(255,255,255,.5)),url('https://images.unsplash.com/photo-1490750967868-88aa4486c946');
+
+background-size:cover;
+
+background-position:center;
+
+}
+
+.hero h1{
+
+font-size:55px;
+
+color:#ff4c73;
+
+}
+
+.hero p{
+
+margin-top:20px;
+
+font-size:20px;
+
+color:#444;
+
+}
+
+.hero button{
+
+margin-top:30px;
+
+padding:15px 40px;
+
+border:none;
+
+border-radius:40px;
+
+background:#ff5f7e;
+
+color:white;
+
+font-size:18px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.hero button:hover{
+
+transform:scale(1.08);
+
+}
+
+section{
+
+padding:70px 6%;
+
+}
+
+.title{
+
+font-size:38px;
+
+margin-bottom:35px;
+
+color:#ff5f7e;
+
+text-align:center;
+
+}
+
+.grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:30px;
+
+}
+
+.card{
+
+background:white;
+
+border-radius:20px;
+
+overflow:hidden;
+
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+
+transition:.4s;
+
+}
+
+.card:hover{
+
+transform:translateY(-10px);
+
+}
+
+.card img{
+
+width:100%;
+
+height:250px;
+
+object-fit:cover;
+
+}
+
+.card-body{
+
+padding:18px;
+
+}
+
+.card-body h3{
+
+color:#333;
+
+}
+
+.price{
+
+margin:10px 0;
+
+font-size:22px;
+
+font-weight:bold;
+
+color:#ff4c73;
+
+}
+
+button.buy{
+
+width:100%;
+
+padding:12px;
+
+border:none;
+
+background:#ff5f7e;
+
+color:white;
+
+border-radius:30px;
+
+cursor:pointer;
+
+}
+
+.dashboard{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:25px;
+
+}
+
+.box{
+
+background:white;
+
+padding:30px;
+
+border-radius:20px;
+
+text-align:center;
+
+box-shadow:0 10px 20px rgba(0,0,0,.08);
+
+}
+
+.box h2{
+
+font-size:35px;
+
+color:#ff5f7e;
+
+}
+
+.box p{
+
+margin-top:10px;
+
+color:#666;
+
+}
+
+footer{
+
+background:#222;
+
+color:white;
+
+padding:40px;
+
+text-align:center;
+
+margin-top:80px;
+
+}
+
+@media(max-width:768px){
+
+.hero h1{
+
+font-size:38px;
+
+}
+
+header{
+
+padding:15px;
+
+}
+
+nav{
+
+display:none;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+🌸 Flower Coffee
+
+</div>
+
+<nav>
+
+<a href="#dashboard">Trang chủ</a>
+
+<a href="#flowers">Hoa</a>
+
+<a href="#drinks">Đồ uống</a>
+
+<a href="#about">Giới thiệu</a>
+
+</nav>
+
+</header>
+
+<div class="hero">
+
+<h1>Flower & Coffee Shop</h1>
+
+<p>Hệ thống quản lý cửa hàng bán hoa kết hợp cà phê</p>
+
+<button>Mua ngay</button>
+
+</div>
+
+<section id="dashboard">
+
+<h2 class="title">
+
+Dashboard
+
+</h2>
+
+<div class="dashboard">
+
+<div class="box">
+
+<h2>25</h2>
+
+<p>Đơn hôm nay</p>
+
+</div>
+
+<div class="box">
+
+<h2>18.500.000đ</h2>
+
+<p>Doanh thu</p>
+
+</div>
+
+<div class="box">
+
+<h2>120</h2>
+
+<p>Sản phẩm</p>
+
+</div>
+
+<div class="box">
+
+<h2>35</h2>
+
+<p>Khách hàng</p>
+
+</div>
+
+</div>
+
+</section>
+<!-- ================= DANH MỤC HOA ================= -->
+
+<section id="flowers">
+
+<h2 class="title">🌸 Danh Mục Hoa</h2>
+
+<div class="grid">
+
+<div class="card">
+<img src="images/hoahong.jpg">
+<div class="card-body">
+<h3>🌹 Hoa Hồng</h3>
+<p>Bó hoa tình yêu lãng mạn.</p>
+<div class="price">450.000đ</div>
+<button class="buy">Thêm vào giỏ</button>
+</div>
+</div>
+
+<div class="card">
+<img src="images/hoacuc.jpg">
+<div class="card-body">
+<h3>🌼 Hoa Cúc</h3>
+<p>Thanh lịch và tinh tế.</p>
+<div class="price">320.000đ</div>
+<button class="buy">Thêm vào giỏ</button>
+</div>
+</div>
+
+<div class="card">
+<img src="images/camtucau.jpg">
+<div class="card-body">
+<h3>💙 Hoa Cẩm Tú Cầu</h3>
+<p>Mang ý nghĩa chân thành.</p>
+<div class="price">550.000đ</div>
+<button class="buy">Thêm vào giỏ</button>
+</div>
+</div>
+
+<div class="card">
+<img src="images/huongduong.jpg">
+<div class="card-body">
+<h3>🌻 Hoa Hướng Dương</h3>
+<p>Biểu tượng của hy vọng.</p>
+<div class="price">390.000đ</div>
+<button class="buy">Thêm vào giỏ</button>
+</div>
+</div>
+
+<div class="card">
+<img src="images/hoaly.jpg">
+<div class="card-body">
+<h3>🌸 Hoa Ly</h3>
+<p>Sang trọng và quý phái.</p>
+<div class="price">480.000đ</div>
+<button class="buy">Thêm vào giỏ</button>
+</div>
+</div>
+
+<div class="card">
+<img src="images/baby.jpg">
+<div class="card-body">
+<h3>🤍 Hoa Baby</h3>
+<p>Nhẹ nhàng và tinh khôi.</p>
+<div class="price">260.000đ</div>
+<button class="buy">Thêm vào giỏ</button>
+</div>
+</div>
+
+<div class="card">
+<img src="images/dongtien.jpg">
+<div class="card-body">
+<h3>🌺 Hoa Đồng Tiền</h3>
+<p>Tượng trưng cho tài lộc.</p>
+<div class="price">350.000đ</div>
+<button class="buy">Thêm vào giỏ</button>
+</div>
+</div>
+
+<div class="card">
+<img src="images/hoalan.jpg">
+<div class="card-body">
+<h3>🪷 Hoa Lan</h3>
+<p>Cao quý và sang trọng.</p>
+<div class="price">680.000đ</div>
+<button class="buy">Thêm vào giỏ</button>
+</div>
+</div>
+
+<div class="card">
+<img src="images/cattuong.jpg">
+<div class="card-body">
+<h3>🌷 Hoa Cát Tường</h3>
+<p>May mắn và hạnh phúc.</p>
+<div class="price">420.000đ</div>
+<button class="buy">Thêm vào giỏ</button>
+</div>
+</div>
+
+<div class="card">
+<img src="images/lytrang.jpg">
+<div class="card-body">
+<h3>🤍 Hoa Ly Trắng</h3>
+<p>Thanh khiết và tinh tế.</p>
+<div class="price">500.000đ</div>
+<button class="buy">Thêm vào giỏ</button>
+</div>
+</div>
+
+</div>
+
+</section>
+<!-- =============== KẾT THÚC DANH MỤC HOA =============== -->
+<!-- ================= DANH MỤC ĐỒ UỐNG ================= -->
+
+<section id="drinks">
+
+<h2 class="title">☕ Danh Mục Đồ Uống</h2>
+
+<div class="grid">
+
+<!-- Cà phê đen -->
+<div class="card">
+<img src="images/cafeden.jpg">
+<div class="card-body">
+<h3>☕ Cà phê đen</h3>
+<p>Đậm vị cà phê nguyên chất.</p>
+<div class="price">30.000đ</div>
+
+<select>
+<option>Size S</option>
+<option>Size M</option>
+<option>Size L</option>
+</select><br><br>
+
+<select>
+<option>100% đường</option>
+<option>70% đường</option>
+<option>50% đường</option>
+<option>30% đường</option>
+<option>Không đường</option>
+</select><br><br>
+
+<select>
+<option>Bình thường</option>
+<option>Ít đá</option>
+<option>Không đá</option>
+</select><br><br>
+
+<button class="buy">Thêm vào giỏ</button>
+
+</div>
+</div>
+
+<!-- Cà phê sữa -->
+<div class="card">
+<img src="images/cafesua.jpg">
+<div class="card-body">
+<h3>🥛 Cà phê sữa</h3>
+<p>Béo thơm cùng sữa đặc.</p>
+<div class="price">35.000đ</div>
+
+<select>
+<option>Size S</option>
+<option>Size M</option>
+<option>Size L</option>
+</select><br><br>
+
+<button class="buy">Thêm vào giỏ</button>
+
+</div>
+</div>
+
+<!-- Bạc xỉu -->
+<div class="card">
+<img src="images/bacxiu.jpg">
+<div class="card-body">
+<h3>🥤 Bạc xỉu</h3>
+<p>Nhiều sữa - ít cà phê.</p>
+<div class="price">38.000đ</div>
+
+<select>
+<option>Size S</option>
+<option>Size M</option>
+<option>Size L</option>
+</select><br><br>
+
+<button class="buy">Thêm vào giỏ</button>
+
+</div>
+</div>
+
+<!-- Cà phê -->
+<div class="card">
+<img src="images/caphe.jpg">
+<div class="card-body">
+<h3>☕ Cà phê</h3>
+<p>Hương vị truyền thống.</p>
+<div class="price">32.000đ</div>
+
+<select>
+<option>Size S</option>
+<option>Size M</option>
+<option>Size L</option>
+</select><br><br>
+
+<button class="buy">Thêm vào giỏ</button>
+
+</div>
+</div>
+
+<!-- Sinh tố bơ -->
+<div class="card">
+<img src="images/bo.jpg">
+<div class="card-body">
+<h3>🥑 Sinh tố bơ</h3>
+<p>Béo ngậy - thơm mát.</p>
+<div class="price">55.000đ</div>
+
+<select>
+<option>Size S</option>
+<option>Size M</option>
+<option>Size L</option>
+</select><br><br>
+
+<button class="buy">Thêm vào giỏ</button>
+
+</div>
+</div>
+
+<!-- Nước ép cam -->
+<div class="card">
+<img src="images/cam.jpg">
+<div class="card-body">
+<h3>🍊 Nước ép cam</h3>
+<p>Cam tươi nguyên chất.</p>
+<div class="price">45.000đ</div>
+
+<select>
+<option>Size S</option>
+<option>Size M</option>
+<option>Size L</option>
+</select><br><br>
+
+<button class="buy">Thêm vào giỏ</button>
+
+</div>
+</div>
+
+<!-- Trà đào cam sả -->
+<div class="card">
+<img src="images/traDao.jpg">
+<div class="card-body">
+<h3>🍑 Trà đào cam sả</h3>
+<p>Đào - cam - sả thơm mát.</p>
+<div class="price">52.000đ</div>
+
+<select>
+<option>Size S</option>
+<option>Size M</option>
+<option>Size L</option>
+</select><br><br>
+
+<button class="buy">Thêm vào giỏ</button>
+
+</div>
+</div>
+
+<!-- Trà vải -->
+<div class="card">
+<img src="images/travai.jpg">
+<div class="card-body">
+<h3>🍇 Trà vải</h3>
+<p>Trà thơm cùng quả vải.</p>
+<div class="price">49.000đ</div>
+
+<select>
+<option>Size S</option>
+<option>Size M</option>
+<option>Size L</option>
+</select><br><br>
+
+<button class="buy">Thêm vào giỏ</button>
+
+</div>
+</div>
+
+</div>
+
+</section>
+<!-- ============== KẾT THÚC ĐỒ UỐNG ================= -->
+<!--================ GIỎ HÀNG =================-->
+
+<section id="cart">
+
+<h2 class="title">🛒 Giỏ Hàng</h2>
+
+<div style="background:#fff;padding:25px;border-radius:20px;box-shadow:0 10px 20px rgba(0,0,0,.08);">
+
+<table width="100%" id="cartTable">
+
+<tr style="background:#ff5f7e;color:white;height:45px;">
+<th>Sản phẩm</th>
+<th>SL</th>
+<th>Đơn giá</th>
+<th>Thành tiền</th>
+<th>Xóa</th>
+</tr>
+
+<tbody id="cartBody">
+
+</tbody>
+
+</table>
+
+<br>
+
+<h2 style="color:#ff4c73">
+Tổng tiền:
+<span id="total">0đ</span>
+</h2>
+
+<br>
+
+<input id="customerName"
+placeholder="Tên khách hàng"
+style="width:100%;padding:12px;border-radius:10px;border:1px solid #ccc;margin-bottom:10px;">
+
+<input id="customerPhone"
+placeholder="Số điện thoại"
+style="width:100%;padding:12px;border-radius:10px;border:1px solid #ccc;margin-bottom:10px;">
+
+<textarea
+placeholder="Ghi chú"
+style="width:100%;height:80px;padding:10px;border-radius:10px;border:1px solid #ccc;"></textarea>
+
+<br><br>
+
+<button onclick="checkout()" class="buy">
+Thanh toán
+</button>
+
+</div>
+
+</section>
+
+<script>
+
+let cart=[];
+
+function addCart(name,price){
+
+let found=cart.find(x=>x.name==name);
+
+if(found){
+
+found.qty++;
+
+}else{
+
+cart.push({
+
+name:name,
+
+price:price,
+
+qty:1
+
+});
+
+}
+
+renderCart();
+
+}
+
+function renderCart(){
+
+let html="";
+
+let total=0;
+
+cart.forEach((p,i)=>{
+
+let money=p.price*p.qty;
+
+total+=money;
+
+html+=`
+
+<tr>
+
+<td>${p.name}</td>
+
+<td>${p.qty}</td>
+
+<td>${p.price.toLocaleString()}đ</td>
+
+<td>${money.toLocaleString()}đ</td>
+
+<td>
+
+<button onclick="removeItem(${i})">
+
+❌
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+document.getElementById("cartBody").innerHTML=html;
+
+document.getElementById("total").innerHTML=total.toLocaleString()+"đ";
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+}
+
+function removeItem(i){
+
+cart.splice(i,1);
+
+renderCart();
+
+}
+
+function checkout(){
+
+if(cart.length==0){
+
+alert("Giỏ hàng đang trống!");
+
+return;
+
+}
+
+alert("Thanh toán thành công!");
+
+cart=[];
+
+renderCart();
+
+}
+
+window.onload=function(){
+
+let data=localStorage.getItem("cart");
+
+if(data){
+
+cart=JSON.parse(data);
+
+renderCart();
+
+}
+
+}
+
+document.querySelectorAll(".buy").forEach(btn=>{
+
+btn.addEventListener("click",function(){
+
+let card=this.parentElement;
+
+let name=card.querySelector("h3").innerText;
+
+let price=parseInt(card.querySelector(".price").innerText.replace(/\D/g,""));
+
+if(name!=""){
+
+addCart(name,price);
+
+}
+
+});
+
+});
+
+</script>
+<!--================ QUẢN LÝ KHO =================-->
+
+<section id="warehouse">
+
+<h2 class="title">📦 Quản Lý Kho</h2>
+
+<div class="dashboard">
+
+<div class="box">
+<h2 id="flowerStock">520</h2>
+<p>Hoa còn trong kho</p>
+</div>
+
+<div class="box">
+<h2 id="drinkStock">340</h2>
+<p>Nguyên liệu pha chế</p>
+</div>
+
+<div class="box">
+<h2 id="warning">8</h2>
+<p>Sản phẩm sắp hết</p>
+</div>
+
+<div class="box">
+<h2>98%</h2>
+<p>Tình trạng kho</p>
+</div>
+
+</div>
+
+<br>
+
+<table width="100%" style="background:white;border-radius:15px;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,.08);">
+
+<tr style="background:#ff5f7e;color:white;height:45px;">
+<th>Sản phẩm</th>
+<th>Kho</th>
+<th>Trạng thái</th>
+</tr>
+
+<tr>
+<td>🌹 Hoa Hồng</td>
+<td>45 bó</td>
+<td style="color:green;">Đủ hàng</td>
+</tr>
+
+<tr>
+<td>🌼 Hoa Cúc</td>
+<td>12 bó</td>
+<td style="color:orange;">Sắp hết</td>
+</tr>
+
+<tr>
+<td>🌻 Hoa Hướng Dương</td>
+<td>9 bó</td>
+<td style="color:red;">Cần nhập</td>
+</tr>
+
+<tr>
+<td>☕ Cà phê</td>
+<td>18 kg</td>
+<td style="color:green;">Đủ</td>
+</tr>
+
+<tr>
+<td>🥛 Sữa</td>
+<td>4 hộp</td>
+<td style="color:red;">Cần nhập</td>
+</tr>
+
+<tr>
+<td>🍊 Cam</td>
+<td>10 kg</td>
+<td style="color:orange;">Sắp hết</td>
+</tr>
+
+<tr>
+<td>🍑 Đào</td>
+<td>8 kg</td>
+<td style="color:red;">Cần nhập</td>
+</tr>
+
+<tr>
+<td>🍇 Vải</td>
+<td>14 kg</td>
+<td style="color:green;">Đủ</td>
+</tr>
+
+</table>
+<!--================ QUẢN LÝ NHẬP KHO =================-->
+
+<section id="import">
+
+<h2 class="title">🚚 Nhập Kho</h2>
+
+<div style="background:white;padding:25px;border-radius:20px;box-shadow:0 10px 20px rgba(0,0,0,.08);">
+
+<input id="productName" placeholder="Tên sản phẩm"
+style="width:100%;padding:12px;margin-bottom:10px;">
+
+<input id="productQty" type="number"
+placeholder="Số lượng nhập"
+style="width:100%;padding:12px;margin-bottom:10px;">
+
+<input id="productPrice" type="number"
+placeholder="Đơn giá"
+style="width:100%;padding:12px;margin-bottom:10px;">
+
+<button onclick="importProduct()" class="buy">
+
+➕ Nhập Kho
+
+</button>
+
+</div>
+
+<br>
+
+<table width="100%" style="background:white">
+
+<thead>
+
+<tr style="background:#ff5f7e;color:white;height:45px;">
+
+<th>Sản phẩm</th>
+
+<th>Số lượng</th>
+
+<th>Đơn giá</th>
+
+<th>Thời gian</th>
+
+</tr>
+
+</thead>
+
+<tbody id="importTable">
+
+</tbody>
+
+</table>
+
+</section>
+
+<!--================ THỐNG KÊ TỒN KHO =================-->
+
+<section>
+
+<h2 class="title">
+
+📦 Thống kê tồn kho
+
+</h2>
+
+<div class="dashboard">
+
+<div class="box">
+
+<h2>560</h2>
+
+<p>Tổng bó hoa</p>
+
+</div>
+
+<div class="box">
+
+<h2>780</h2>
+
+<p>Nguyên liệu</p>
+
+</div>
+
+<div class="box">
+
+<h2>18</h2>
+
+<p>Sản phẩm sắp hết</p>
+
+</div>
+
+<div class="box">
+
+<h2>92%</h2>
+
+<p>Độ đầy kho</p>
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+
+let imports=[];
+
+function importProduct(){
+
+let p=document.getElementById("productName").value;
+
+let q=document.getElementById("productQty").value;
+
+let price=document.getElementById("productPrice").value;
+
+if(p==""){
+
+alert("Nhập tên sản phẩm");
+
+return;
+
+}
+
+imports.push({
+
+name:p,
+
+qty:q,
+
+price:price,
+
+time:new Date().toLocaleString()
+
+});
+
+renderImport();
+
+}
+
+function renderImport(){
+
+let html="";
+
+imports.forEach(i=>{
+
+html+=`
+
+<tr>
+
+<td>${i.name}</td>
+
+<td>${i.qty}</td>
+
+<td>${Number(i.price).toLocaleString()}đ</td>
+
+<td>${i.time}</td>
+
+</tr>
+
+`;
+
+});
+
+document.getElementById("importTable").innerHTML=html;
+
+localStorage.setItem("imports",JSON.stringify(imports));
+
+}
+
+if(localStorage.getItem("imports")){
+
+imports=JSON.parse(localStorage.getItem("imports"));
+
+renderImport();
+
+}
+
+</script>
+
+</section>
+
+<!--================ KHÁCH HÀNG =================-->
+
+<section>
+
+<h2 class="title">
+
+👤 Khách Hàng
+
+</h2>
+
+<div style="background:white;padding:25px;border-radius:20px;box-shadow:0 5px 15px rgba(0,0,0,.08);">
+
+<input placeholder="Tên khách hàng"
+style="width:100%;padding:12px;margin-bottom:10px;">
+
+<input placeholder="Số điện thoại"
+style="width:100%;padding:12px;margin-bottom:10px;">
+
+<input placeholder="Địa chỉ"
+style="width:100%;padding:12px;margin-bottom:10px;">
+
+<button class="buy">
+
+Lưu khách hàng
+
+</button>
+
+</div>
+
+</section>
+
+<!--================ DOANH THU =================-->
+
+<section>
+
+<h2 class="title">
+
+💰 Thống Kê Doanh Thu
+
+</h2>
+
+<div class="dashboard">
+
+<div class="box">
+
+<h2>18.181.818đ</h2>
+
+<p>Hôm nay</p>
+
+</div>
+
+<div class="box">
+
+<h2>36.363.636đ</h2>
+
+<p>Tuần này</p>
+
+</div>
+
+<div class="box">
+
+<h2>676.767.676</h2>
+
+<p>Tháng này</p>
+
+</div>
+
+<div class="box">
+
+<h2>3.67 tỷ</h2>
+
+<p>Năm nay</p>
+
+</div>
+
+</div>
+
+</section>
+<!--================ TÌM KIẾM SẢN PHẨM =================-->
+
+<section id="search">
+
+<h2 class="title">🔍 Tìm Kiếm Sản Phẩm</h2>
+
+<input
+type="text"
+id="searchInput"
+placeholder="Nhập tên hoa hoặc đồ uống..."
+style="width:100%;padding:15px;border-radius:12px;border:1px solid #ddd;font-size:16px;">
+
+</section>
+
+<!--================ HÓA ĐƠN =================-->
+
+<section id="invoice">
+
+<h2 class="title">🧾 Hóa Đơn</h2>
+
+<div style="background:white;padding:25px;border-radius:20px;box-shadow:0 5px 15px rgba(0,0,0,.1);">
+
+<p>Mã hóa đơn:
+<b id="billCode"></b>
+</p>
+
+<p>Ngày:
+<b id="today"></b>
+</p>
+
+<p>Khách hàng:
+<span id="billCustomer">Khách lẻ</span>
+</p>
+
+<hr>
+
+<div id="billContent">
+
+Chưa có đơn hàng.
+
+</div>
+
+<hr>
+
+<h2 style="color:#ff5f7e">
+
+Tổng thanh toán:
+
+<span id="billTotal">
+
+0đ
+
+</span>
+
+</h2>
+
+<br>
+
+<button onclick="window.print()" class="buy">
+
+🖨 In hóa đơn
+
+</button>
+
+</div>
+
+</section>
+
+<!--================ KHUYẾN MÃI =================-->
+
+<section>
+
+<h2 class="title">
+
+🎁 Khuyến Mãi
+
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="card-body">
+
+<h3>🌹 Mua 2 bó hoa</h3>
+
+<p>Tặng thiệp miễn phí.</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-body">
+
+<h3>☕ Combo Cafe</h3>
+
+<p>Mua 2 ly giảm 20%.</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-body">
+
+<h3>🥤 Happy Hour</h3>
+
+<p>14h - 17h giảm 15%.</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!--================ THÔNG BÁO =================-->
+
+<div id="toast"
+
+style="position:fixed;
+right:20px;
+bottom:20px;
+background:#ff5f7e;
+color:white;
+padding:15px 25px;
+border-radius:10px;
+display:none;
+z-index:9999;">
+
+Đã thêm vào giỏ hàng.
+
+</div>
+
+<script>
+
+let code="HD"+Math.floor(Math.random()*100000);
+
+document.getElementById("billCode").innerHTML=code;
+
+let d=new Date();
+
+document.getElementById("today").innerHTML=d.toLocaleDateString();
+
+function toast(text){
+
+let t=document.getElementById("toast");
+
+t.innerHTML=text;
+
+t.style.display="block";
+
+setTimeout(()=>{
+
+t.style.display="none";
+
+},2500);
+
+}
+
+document.querySelectorAll(".buy").forEach(btn=>{
+
+btn.addEventListener("click",function(){
+
+if(this.innerHTML.includes("Thêm")){
+
+toast("✔ Đã thêm sản phẩm vào giỏ");
+
+}
+
+});
+
+});
+
+document.getElementById("searchInput").addEventListener("keyup",function(){
+
+let value=this.value.toLowerCase();
+
+let cards=document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+
+let txt=card.innerText.toLowerCase();
+
+if(txt.indexOf(value)>-1){
+
+card.style.display="block";
+
+}else{
+
+card.style.display="none";
+
+}
+
+});
+
+});
+
+</script>
+<!--================= QUẢN LÝ NHÂN VIÊN =================-->
+
+<section id="staff">
+
+<h2 class="title">👨‍💼 Quản Lý Nhân Viên</h2>
+
+<div class="grid">
+
+<div class="box">
+<h2>8</h2>
+<p>Nhân viên</p>
+</div>
+
+<div class="box">
+<h2>3</h2>
+<p>Thu ngân</p>
+</div>
+
+<div class="box">
+<h2>2</h2>
+<p>Pha chế</p>
+</div>
+
+<div class="box">
+<h2>3</h2>
+<p>Cắm hoa</p>
+</div>
+
+</div>
+
+<br>
+
+<table width="100%" style="background:white;border-radius:15px">
+
+<tr style="background:#ff5f7e;color:white">
+<th>Tên</th>
+<th>Chức vụ</th>
+<th>Ca làm</th>
+<th>Trạng thái</th>
+</tr>
+
+<tr>
+
+<td>Nguyễn Văn A</td>
+
+<td>Thu ngân</td>
+
+<td>Sáng</td>
+
+<td style="color:green">Đang làm</td>
+
+</tr>
+
+<tr>
+
+<td>Trần Thị B</td>
+
+<td>Pha chế</td>
+
+<td>Chiều</td>
+
+<td style="color:green">Đang làm</td>
+
+</tr>
+
+<tr>
+
+<td>Lê Văn C</td>
+
+<td>Cắm hoa</td>
+
+<td>Tối</td>
+
+<td style="color:orange">Nghỉ</td>
+
+</tr>
+
+</table>
+
+</section>
+
+<!--================= THỐNG KÊ NHANH =================-->
+
+<section>
+
+<h2 class="title">📊 Thống Kê</h2>
+
+<div class="dashboard">
+
+<div class="box">
+<h2 id="flowerSold">124</h2>
+<p>Bó hoa đã bán</p>
+</div>
+
+<div class="box">
+<h2 id="drinkSold">286</h2>
+<p>Ly nước đã bán</p>
+</div>
+
+<div class="box">
+<h2>96%</h2>
+<p>Khách hài lòng</p>
+</div>
+
+<div class="box">
+<h2>4.9⭐</h2>
+<p>Đánh giá</p>
+</div>
+
+</div>
+
+</section>
+
+<!--================= ĐỒNG HỒ =================-->
+
+<section>
+
+<h2 class="title">🕒 Thời Gian</h2>
+
+<div class="box">
+
+<h2 id="clock"></h2>
+
+<p>Ngày hiện tại</p>
+
+</div>
+
+</section>
+
+<script>
+
+function updateClock(){
+
+let d=new Date();
+
+clock.innerHTML=d.toLocaleTimeString();
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+</script>
+<!--================ QUẢN LÝ ĐƠN HÀNG =================-->
+
+<section id="orders">
+
+<h2 class="title">📋 Quản Lý Đơn Hàng</h2>
+
+<div style="background:white;padding:20px;border-radius:20px;box-shadow:0 10px 20px rgba(0,0,0,.08);">
+
+<input id="orderCustomer" placeholder="Tên khách hàng"
+style="width:100%;padding:12px;margin-bottom:10px;">
+
+<select id="orderProduct"
+style="width:100%;padding:12px;margin-bottom:10px;">
+
+<option>🌹 Hoa Hồng</option>
+<option>🌼 Hoa Cúc</option>
+<option>💙 Hoa Cẩm Tú Cầu</option>
+<option>🌻 Hoa Hướng Dương</option>
+<option>🌸 Hoa Ly</option>
+<option>🤍 Hoa Baby</option>
+<option>🌺 Hoa Đồng Tiền</option>
+<option>🪷 Hoa Lan</option>
+<option>🌷 Hoa Cát Tường</option>
+
+<option>☕ Cà phê đen</option>
+<option>🥛 Cà phê sữa</option>
+<option>☕ Cà phê</option>
+<option>🥤 Bạc xỉu</option>
+<option>🥑 Sinh tố bơ</option>
+<option>🍊 Nước ép cam</option>
+<option>🍑 Trà đào cam sả</option>
+<option>🍇 Trà vải</option>
+
+</select>
+
+<input id="orderQty"
+
+type="number"
+
+placeholder="Số lượng"
+
+value="1"
+
+style="width:100%;padding:12px;margin-bottom:10px;">
+
+<button onclick="addOrder()" class="buy">
+
+➕ Thêm đơn hàng
+
+</button>
+
+</div>
+
+<br>
+
+<table width="100%" style="background:white;border-radius:15px;overflow:hidden;">
+
+<thead>
+
+<tr style="background:#ff5f7e;color:white;height:45px;">
+
+<th>Mã</th>
+
+<th>Khách</th>
+
+<th>Sản phẩm</th>
+
+<th>SL</th>
+
+<th>Ngày</th>
+
+<th>Xóa</th>
+
+</tr>
+
+</thead>
+
+<tbody id="orderTable">
+
+</tbody>
+
+</table>
+
+</section>
+
+<script>
+
+let orders=JSON.parse(localStorage.getItem("orders"))||[];
+
+function addOrder(){
+
+let customer=document.getElementById("orderCustomer").value;
+
+let product=document.getElementById("orderProduct").value;
+
+let qty=document.getElementById("orderQty").value;
+
+if(customer==""){
+
+alert("Nhập tên khách hàng");
+
+return;
+
+}
+
+orders.push({
+
+id:"HD"+Date.now(),
+
+customer,
+
+product,
+
+qty,
+
+date:new Date().toLocaleString()
+
+});
+
+renderOrders();
+
+}
+
+function renderOrders(){
+
+let html="";
+
+orders.forEach((o,index)=>{
+
+html+=`
+
+<tr>
+
+<td>${o.id}</td>
+
+<td>${o.customer}</td>
+
+<td>${o.product}</td>
+
+<td>${o.qty}</td>
+
+<td>${o.date}</td>
+
+<td>
+
+<button onclick="deleteOrder(${index})">
+
+🗑️
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+document.getElementById("orderTable").innerHTML=html;
+
+localStorage.setItem("orders",JSON.stringify(orders));
+
+}
+
+function deleteOrder(i){
+
+orders.splice(i,1);
+
+renderOrders();
+
+}
+
+renderOrders();
+
+</script>
+<!--================ QUẢN LÝ SẢN PHẨM =================-->
+
+<section id="products">
+
+<h2 class="title">📦 Quản Lý Sản Phẩm</h2>
+
+<div style="background:white;padding:25px;border-radius:20px;box-shadow:0 10px 20px rgba(0,0,0,.1);">
+
+<input id="spName"
+placeholder="Tên sản phẩm"
+style="width:100%;padding:12px;margin-bottom:10px;">
+
+<input id="spPrice"
+type="number"
+placeholder="Giá bán"
+style="width:100%;padding:12px;margin-bottom:10px;">
+
+<input id="spStock"
+type="number"
+placeholder="Số lượng tồn"
+style="width:100%;padding:12px;margin-bottom:10px;">
+
+<select id="spType"
+style="width:100%;padding:12px;margin-bottom:10px;">
+
+<option>Hoa</option>
+<option>Đồ uống</option>
+
+</select>
+
+<button class="buy" onclick="addProduct()">
+
+➕ Thêm sản phẩm
+
+</button>
+
+</div>
+
+<br>
+
+<table width="100%" style="background:white;border-radius:15px;overflow:hidden;">
+
+<thead>
+
+<tr style="background:#ff5f7e;color:white;height:45px;">
+
+<th>Tên</th>
+
+<th>Loại</th>
+
+<th>Giá</th>
+
+<th>Tồn</th>
+
+<th>Xóa</th>
+
+</tr>
+
+</thead>
+
+<tbody id="productTable">
+
+</tbody>
+
+</table>
+
+</section>
+
+<script>
+
+let products=JSON.parse(localStorage.getItem("products"))||[];
+
+function addProduct(){
+
+let p={
+
+name:spName.value,
+
+price:spPrice.value,
+
+stock:spStock.value,
+
+type:spType.value
+
+};
+
+if(p.name==""){
+
+alert("Nhập tên sản phẩm");
+
+return;
+
+}
+
+products.push(p);
+
+saveProducts();
+
+}
+
+function saveProducts(){
+
+localStorage.setItem("products",JSON.stringify(products));
+
+renderProducts();
+
+}
+
+function renderProducts(){
+
+let html="";
+
+products.forEach((p,i)=>{
+
+html+=`
+
+<tr>
+
+<td>${p.name}</td>
+
+<td>${p.type}</td>
+
+<td>${Number(p.price).toLocaleString()}đ</td>
+
+<td>${p.stock}</td>
+
+<td>
+
+<button onclick="removeProduct(${i})">
+
+🗑️
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+productTable.innerHTML=html;
+
+}
+
+function removeProduct(i){
+
+products.splice(i,1);
+
+saveProducts();
+
+}
+
+renderProducts();
+
+</script>
+<!--================ XUẤT KHO =================-->
+
+<section id="export">
+
+<h2 class="title">📤 Xuất Kho</h2>
+
+<div style="background:white;padding:25px;border-radius:20px;box-shadow:0 10px 20px rgba(0,0,0,.08);">
+
+<input id="exportName"
+placeholder="Tên sản phẩm"
+style="width:100%;padding:12px;margin-bottom:10px;">
+
+<input id="exportQty"
+type="number"
+placeholder="Số lượng xuất"
+style="width:100%;padding:12px;margin-bottom:10px;">
+
+<button class="buy" onclick="exportProduct()">
+
+📤 Xuất kho
+
+</button>
+
+</div>
+
+<br>
+
+<table width="100%" style="background:white;border-radius:15px;overflow:hidden;">
+
+<thead>
+
+<tr style="background:#ff5f7e;color:white;height:45px;">
+
+<th>Sản phẩm</th>
+
+<th>Số lượng</th>
+
+<th>Ngày xuất</th>
+
+</tr>
+
+</thead>
+
+<tbody id="exportTable">
+
+</tbody>
+
+</table>
+
+</section>
+
+<!--================ CẢNH BÁO =================-->
+
+<section>
+
+<h2 class="title">
+
+⚠️ Cảnh Báo Tồn Kho
+
+</h2>
+
+<div id="warningBox"
+
+style="background:#fff5f5;
+padding:20px;
+border-left:8px solid red;
+border-radius:15px;">
+
+Đang kiểm tra kho...
+
+</div>
+
+</section>
+
+<script>
+
+let exportsData=JSON.parse(localStorage.getItem("exports"))||[];
+
+function exportProduct(){
+
+let name=document.getElementById("exportName").value;
+
+let qty=parseInt(document.getElementById("exportQty").value);
+
+if(name==""){
+
+alert("Nhập tên sản phẩm");
+
+return;
+
+}
+
+exportsData.push({
+
+name,
+
+qty,
+
+date:new Date().toLocaleString()
+
+});
+
+products.forEach(p=>{
+
+if(p.name.toLowerCase()==name.toLowerCase()){
+
+p.stock=parseInt(p.stock)-qty;
+
+if(p.stock<0)p.stock=0;
+
+}
+
+});
+
+localStorage.setItem("exports",JSON.stringify(exportsData));
+
+saveProducts();
+
+renderExport();
+
+checkWarning();
+
+}
+
+function renderExport(){
+
+let html="";
+
+exportsData.forEach(e=>{
+
+html+=`
+
+<tr>
+
+<td>${e.name}</td>
+
+<td>${e.qty}</td>
+
+<td>${e.date}</td>
+
+</tr>
+
+`;
+
+});
+
+document.getElementById("exportTable").innerHTML=html;
+
+}
+
+function checkWarning(){
+
+let text="";
+
+products.forEach(p=>{
+
+if(parseInt(p.stock)<=10){
+
+text+="<p>⚠️ "+p.name+" chỉ còn "+p.stock+" sản phẩm.</p>";
+
+}
+
+});
+
+if(text==""){
+
+text="✅ Tất cả sản phẩm còn đủ.";
+
+}
+
+document.getElementById("warningBox").innerHTML=text;
+
+}
+
+renderExport();
+
+checkWarning();
+
+</script>
+<!--================ MÃ GIẢM GIÁ =================-->
+
+<section id="coupon">
+
+<h2 class="title">🎫 Mã Giảm Giá</h2>
+
+<div style="background:white;padding:25px;border-radius:20px;box-shadow:0 10px 20px rgba(0,0,0,.08);">
+
+<input id="couponCode"
+
+placeholder="Nhập mã giảm giá"
+
+style="width:100%;padding:12px;margin-bottom:10px;">
+
+<button class="buy" onclick="applyCoupon()">
+
+Áp dụng
+
+</button>
+
+<h3 id="couponResult"
+
+style="margin-top:15px;color:#ff5f7e;">
+
+</h3>
+
+</div>
+
+</section>
+
+<!--================ THANH TOÁN =================-->
+
+<section>
+
+<h2 class="title">
+
+💳 Thanh Toán
+
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="card-body">
+
+<h3>💵 Tiền mặt</h3>
+
+<p>Thanh toán trực tiếp.</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-body">
+
+<h3>🏦 Chuyển khoản</h3>
+
+<p>Ngân hàng MB Bank</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-body">
+
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!--================ TOP BÁN CHẠY =================-->
+
+<section>
+
+<h2 class="title">
+
+🔥 Top Sản Phẩm Bán Chạy
+
+</h2>
+
+<table width="100%" style="background:white;border-radius:15px;overflow:hidden;">
+
+<tr style="background:#ff5f7e;color:white;height:45px;">
+
+<th>Hạng</th>
+
+<th>Sản phẩm</th>
+
+<th>Đã bán</th>
+
+</tr>
+
+<tr>
+
+<td>🥇</td>
+
+<td>🌹 Hoa Hồng</td>
+
+<td>186</td>
+
+</tr>
+
+<tr>
+
+<td>🥈</td>
+
+<td>☕ Cà phê đen</td>
+
+<td>172</td>
+
+</tr>
+
+<tr>
+
+<td>🥉</td>
+
+<td>🍑 Trà đào cam sả</td>
+
+<td>150</td>
+
+</tr>
+
+</table>
+
+</section>
+
+<script>
+
+function applyCoupon(){
+
+let code=document.getElementById("couponCode").value.toUpperCase();
+
+let result=document.getElementById("couponResult");
+
+if(code=="FLOWER10"){
+
+result.innerHTML="🌸 Giảm 10% thành công";
+
+}else if(code=="COFFEE20"){
+
+result.innerHTML="☕ Giảm 20% thành công";
+
+}else{
+
+result.innerHTML="❌ Mã không hợp lệ";
+
+}
+
+}
+
+function editProduct(index){
+
+let p=products[index];
+
+let newName=prompt("Tên mới",p.name);
+
+if(newName){
+
+p.name=newName;
+
+saveProducts();
+
+}
+
+}
+
+</script>
+<!--================ LỊCH ĐẶT HOA =================-->
+
+<section id="booking">
+
+<h2 class="title">📅 Đặt Hoa Theo Lịch</h2>
+
+<div style="background:#fff;padding:25px;border-radius:20px;box-shadow:0 10px 20px rgba(0,0,0,.08);">
+
+<input id="bookName" placeholder="Tên khách hàng"
+style="width:100%;padding:12px;margin-bottom:10px;">
+
+<input type="date" id="bookDate"
+style="width:100%;padding:12px;margin-bottom:10px;">
+
+<select id="bookFlower"
+style="width:100%;padding:12px;margin-bottom:10px;">
+
+<option>🌹 Hoa Hồng</option>
+<option>🌼 Hoa Cúc</option>
+<option>💙 Hoa Cẩm Tú Cầu</option>
+<option>🌻 Hoa Hướng Dương</option>
+<option>🌸 Hoa Ly</option>
+<option>🤍 Hoa Baby</option>
+<option>🌺 Hoa Đồng Tiền</option>
+<option>🪷 Hoa Lan</option>
+<option>🌷 Hoa Cát Tường</option>
+
+</select>
+
+<button onclick="addBooking()" class="buy">
+
+Đặt lịch
+
+</button>
+
+</div>
+
+<br>
+
+<table width="100%" style="background:white">
+
+<tr style="background:#ff5f7e;color:white">
+
+<th>Khách</th>
+
+<th>Ngày</th>
+
+<th>Loại hoa</th>
+
+</tr>
+
+<tbody id="bookingTable">
+
+</tbody>
+
+</table>
+
+</section>
+
+<!--================ PHẢN HỒI =================-->
+
+<section>
+
+<h2 class="title">
+
+💬 Phản Hồi Khách Hàng
+
+</h2>
+
+<div style="background:white;padding:25px;border-radius:20px;">
+
+<textarea
+
+id="feedback"
+
+placeholder="Nhập đánh giá..."
+
+style="width:100%;height:120px;padding:15px;">
+
+</textarea>
+
+<br><br>
+
+<button onclick="saveFeedback()" class="buy">
+
+Gửi đánh giá
+
+</button>
+
+<br><br>
+
+<div id="feedbackList">
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+
+let bookings=JSON.parse(localStorage.getItem("bookings"))||[];
+
+let feedbacks=JSON.parse(localStorage.getItem("feedbacks"))||[];
+
+function addBooking(){
+
+bookings.push({
+
+name:bookName.value,
+
+date:bookDate.value,
+
+flower:bookFlower.value
+
+});
+
+localStorage.setItem("bookings",JSON.stringify(bookings));
+
+renderBooking();
+
+}
+
+function renderBooking(){
+
+let html="";
+
+bookings.forEach(b=>{
+
+html+=`
+
+<tr>
+
+<td>${b.name}</td>
+
+<td>${b.date}</td>
+
+<td>${b.flower}</td>
+
+</tr>
+
+`;
+
+});
+
+bookingTable.innerHTML=html;
+
+}
+
+renderBooking();
+
+function saveFeedback(){
+
+if(feedback.value=="") return;
+
+feedbacks.push(feedback.value);
+
+localStorage.setItem("feedbacks",JSON.stringify(feedbacks));
+
+renderFeedback();
+
+feedback.value="";
+
+}
+
+function renderFeedback(){
+
+let html="";
+
+feedbacks.forEach(f=>{
+
+html+="<p style='padding:10px;border-bottom:1px solid #ddd;'>⭐ "+f+"</p>";
+
+});
+
+feedbackList.innerHTML=html;
+
+}
+
+renderFeedback();
+
+</script>
+<!--================ LIÊN HỆ =================-->
+
+<section id="contact">
+
+<h2 class="title">📞 Liên Hệ Cửa Hàng</h2>
+
+<div class="grid">
+
+<div class="box">
+<h2>📍</h2>
+<p>Địa chỉ:<br>Ha Noi</p>
+</div>
+
+<div class="box">
+<h2>📱</h2>
+<p>Hotline<br>0363636767</p>
+</div>
+
+<div class="box">
+<h2>✉️</h2>
+<p>Email<br>flowercoffee@gmail.com</p>
+</div>
+
+<div class="box">
+<h2>🕘</h2>
+<p>07:00 - 22:00</p>
+</div>
+
+</div>
+
+</section>
+
+<!--================ BẢN ĐỒ =================-->
+
+<section>
+
+<h2 class="title">
+
+
+</iframe>
+
+</section>
+
+<!--================ DANH SÁCH YÊU THÍCH =================-->
+
+<section>
+
+<h2 class="title">
+
+❤️ Sản phẩm yêu thích
+
+</h2>
+
+<div id="favoriteList"
+
+style="background:white;padding:20px;border-radius:20px;min-height:120px;">
+
+Chưa có sản phẩm yêu thích.
+
+</div>
+
+</section>
+
+<!--================ CHUÔNG THÔNG BÁO =================-->
+
+<button id="notify"
+
+style="position:fixed;
+
+left:20px;
+
+bottom:20px;
+
+width:60px;
+
+height:60px;
+
+border:none;
+
+border-radius:50%;
+
+background:#ff5f7e;
+
+color:white;
+
+font-size:28px;
+
+cursor:pointer;
+
+z-index:9999;">
+
+🔔
+
+</button>
+
+<!--================ NHẠC NỀN =================-->
+
+<audio id="music" loop>
+
+<source src="music.mp3" type="audio/mpeg">
+
+</audio>
+
+<button id="musicBtn"
+
+style="position:fixed;
+
+left:20px;
+
+bottom:95px;
+
+width:60px;
+
+height:60px;
+
+border:none;
+
+border-radius:50%;
+
+background:#00b894;
+
+color:white;
+
+font-size:24px;
+
+cursor:pointer;
+
+z-index:9999;">
+
+🎵
+
+</button>
+
+<script>
+
+let playing=false;
+
+musicBtn.onclick=function(){
+
+if(!playing){
+
+music.play();
+
+musicBtn.innerHTML="⏸";
+
+playing=true;
+
+}else{
+
+music.pause();
+
+musicBtn.innerHTML="🎵";
+
+playing=false;
+
+}
+
+}
+
+notify.onclick=function(){
+
+alert("🌸 Chào mừng bạn đến với Flower Coffee Shop!");
+
+}
+
+</script>
+<!--================ LỊCH SỬ BÁN HÀNG =================-->
+
+<section id="history">
+
+<h2 class="title">🛍️ Lịch Sử Bán Hàng</h2>
+
+<div style="background:white;padding:20px;border-radius:20px;box-shadow:0 10px 20px rgba(0,0,0,.08);">
+
+<table width="100%">
+
+<thead>
+
+<tr style="background:#ff5f7e;color:white;height:45px;">
+
+<th>Mã HĐ</th>
+
+<th>Khách</th>
+
+<th>Tổng tiền</th>
+
+<th>Thanh toán</th>
+
+</tr>
+
+</thead>
+
+<tbody id="historyTable">
+
+<tr>
+
+<td>HD001</td>
+
+<td>Nguyễn Văn A</td>
+
+<td>850.000đ</td>
+
+<td>Tiền mặt</td>
+
+</tr>
+
+<tr>
+
+<td>HD002</td>
+
+<td>Trần Thị B</td>
+
+<td>120.000đ</td>
+
+<td>QR Code</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<!--================ THỐNG KÊ NHANH =================-->
+
+<section>
+
+<h2 class="title">
+
+📊 Thống Kê Nhanh
+
+</h2>
+
+<div class="dashboard">
+
+<div class="box">
+
+<h2 id="todayOrder">25</h2>
+
+<p>Đơn hôm nay</p>
+
+</div>
+
+<div class="box">
+
+<h2 id="todayRevenue">18.500.000đ</h2>
+
+<p>Doanh thu hôm nay</p>
+
+</div>
+
+<div class="box">
+
+<h2 id="bestFlower">
+
+🌹 Hoa Hồng
+
+</h2>
+
+<p>Bán chạy nhất</p>
+
+</div>
+
+<div class="box">
+
+<h2 id="bestDrink">
+
+☕ Cà phê đen
+
+</h2>
+
+<p>Đồ uống bán chạy</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!--================ IN BÁO CÁO =================-->
+
+<section>
+
+<h2 class="title">
+
+📄 Báo Cáo
+
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="card-body">
+
+<h3>📅 Báo cáo ngày</h3>
+
+<button class="buy"
+
+onclick="window.print()">
+
+In báo cáo
+
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-body">
+
+<h3>📆 Báo cáo tháng</h3>
+
+<button class="buy"
+
+onclick="window.print()">
+
+In báo cáo
+
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-body">
+
+<h3>📈 Báo cáo năm</h3>
+
+<button class="buy"
+
+onclick="window.print()">
+
+In báo cáo
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!--================ THỐNG KÊ TỰ ĐỘNG =================-->
+
+<script>
+
+setInterval(()=>{
+
+document.getElementById("todayOrder").innerHTML=
+
+Math.floor(Math.random()*20)+20;
+
+},4000);
+
+</script>
+<!--================ CHAT HỖ TRỢ =================-->
+
+<div id="chatButton">
+
+💬
+
+</div>
+
+<div id="chatBox">
+
+<div class="chatHeader">
+
+🌸 Flower Coffee Support
+
+</div>
+
+<div id="chatContent">
+
+<p>Xin chào 👋</p>
+
+<p>Bạn cần tư vấn hoa hay đồ uống?</p>
+
+</div>
+
+<input
+
+id="chatInput"
+
+placeholder="Nhập tin nhắn...">
+
+<button onclick="sendChat()">
+
+Gửi
+
+</button>
+
+</div>
+
+<style>
+
+#chatButton{
+
+position:fixed;
+
+right:20px;
+
+bottom:95px;
+
+width:65px;
+
+height:65px;
+
+background:#ff5f7e;
+
+color:#fff;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:30px;
+
+cursor:pointer;
+
+box-shadow:0 8px 20px rgba(0,0,0,.3);
+
+z-index:9999;
+
+}
+
+#chatBox{
+
+position:fixed;
+
+right:20px;
+
+bottom:170px;
+
+width:320px;
+
+height:420px;
+
+background:white;
+
+border-radius:20px;
+
+display:none;
+
+overflow:hidden;
+
+box-shadow:0 15px 30px rgba(0,0,0,.2);
+
+z-index:9999;
+
+}
+
+.chatHeader{
+
+background:#ff5f7e;
+
+color:white;
+
+padding:15px;
+
+font-size:20px;
+
+font-weight:bold;
+
+}
+
+#chatContent{
+
+height:270px;
+
+overflow:auto;
+
+padding:15px;
+
+}
+
+#chatInput{
+
+width:92%;
+
+margin:10px;
+
+padding:10px;
+
+border-radius:10px;
+
+border:1px solid #ccc;
+
+}
+
+#chatBox button{
+
+margin:10px;
+
+width:90%;
+
+padding:12px;
+
+background:#ff5f7e;
+
+color:white;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+}
+
+</style>
+
+<script>
+
+let chatOpen=false;
+
+chatButton.onclick=function(){
+
+chatOpen=!chatOpen;
+
+chatBox.style.display=chatOpen?"block":"none";
+
+}
+
+function sendChat(){
+
+let text=chatInput.value;
+
+if(text=="") return;
+
+chatContent.innerHTML+=
+
+"<p style='text-align:right;color:#ff5f7e'><b>Bạn:</b> "+text+"</p>";
+
+setTimeout(()=>{
+
+chatContent.innerHTML+=
+
+"<p><b>Shop:</b> Cảm ơn bạn, chúng tôi sẽ phản hồi sớm nhất 🌸</p>";
+
+chatContent.scrollTop=chatContent.scrollHeight;
+
+},600);
+
+chatInput.value="";
+
+}
+
+</script>
+
+<!--================ THÔNG BÁO ĐƠN HÀNG =================-->
+
+<script>
+
+setInterval(()=>{
+
+let list=[
+
+"🌹 Có khách vừa mua Hoa Hồng",
+
+"☕ Có khách vừa gọi Cà phê đen",
+
+"🌻 Có khách vừa đặt Hoa Hướng Dương",
+
+"🍊 Có khách vừa mua Nước ép cam",
+
+"🥑 Có khách vừa mua Sinh tố bơ",
+
+"🌷 Có khách vừa đặt Hoa Cát Tường"
+
+];
+
+let random=list[Math.floor(Math.random()*list.length)];
+
+console.log(random);
+
+},8000);
+
+</script>
+
+<!--================ ĐẾM TRUY CẬP =================-->
+
+<section>
+
+<h2 class="title">
+
+🌍 Thống kê truy cập
+
+</h2>
+
+<div class="dashboard">
+
+<div class="box">
+
+<h2 id="visitor">
+
+1205
+
+</h2>
+
+<p>Lượt truy cập</p>
+
+</div>
+
+<div class="box">
+
+<h2 id="onlineNow">
+
+35
+
+</h2>
+
+<p>Đang online</p>
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+
+setInterval(()=>{
+
+visitor.innerHTML=parseInt(visitor.innerHTML)+1;
+
+onlineNow.innerHTML=Math.floor(Math.random()*40)+15;
+
+},5000);
+
+</script>
+<!--================ DARK MODE =================-->
+
+<button id="darkMode"
+style="
+position:fixed;
+top:90px;
+right:20px;
+width:55px;
+height:55px;
+border:none;
+border-radius:50%;
+background:#ff5f7e;
+color:white;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 5px 15px rgba(0,0,0,.3);
+z-index:999;
+">
+🌙
+</button>
+
+<!--================ NÚT LÊN ĐẦU =================-->
+
+<button id="topBtn"
+style="
+position:fixed;
+bottom:25px;
+right:20px;
+width:55px;
+height:55px;
+border:none;
+border-radius:50%;
+background:#00b894;
+color:white;
+font-size:22px;
+display:none;
+cursor:pointer;
+z-index:999;
+">
+↑
+</button>
+
+<script>
+
+const dark=document.getElementById("darkMode");
+
+dark.onclick=function(){
+
+document.body.classList.toggle("dark");
+
+}
+
+window.onscroll=function(){
+
+if(document.documentElement.scrollTop>300){
+
+topBtn.style.display="block";
+
+}else{
+
+topBtn.style.display="none";
+
+}
+
+}
+
+topBtn.onclick=function(){
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+}
+
+</script>
+
+<style>
+
+.dark{
+
+background:#222;
+
+color:white;
+
+}
+
+.dark header{
+
+background:#333;
+
+}
+
+.dark .card{
+
+background:#444;
+
+color:white;
+
+}
+
+.dark .box{
+
+background:#444;
+
+color:white;
+
+}
+
+.dark table{
+
+background:#444;
+
+color:white;
+
+}
+
+.dark input,
+
+.dark textarea,
+
+.dark select{
+
+background:#555;
+
+color:white;
+
+border:none;
+
+}
+
+</style>
+
+<!--================ HOA RƠI =================-->
+
+<script>
+
+setInterval(()=>{
+
+let flower=document.createElement("div");
+
+flower.innerHTML="🌸";
+
+flower.style.position="fixed";
+
+flower.style.left=Math.random()*100+"vw";
+
+flower.style.top="-30px";
+
+flower.style.fontSize=(20+Math.random()*25)+"px";
+
+flower.style.zIndex=9999;
+
+flower.style.transition="6s linear";
+
+document.body.appendChild(flower);
+
+setTimeout(()=>{
+
+flower.style.top="110vh";
+
+flower.style.transform="rotate(360deg)";
+
+},50);
+
+setTimeout(()=>{
+
+flower.remove();
+
+},6500);
+
+},450);
+
+</script>
+
+<!--================ FOOTER =================-->
+
+<footer id="about">
+
+<h2>🌸 Flower & Coffee Shop ☕</h2>
+
+<br>
+
+<p>
+
+Hệ thống quản lý cửa hàng bán hoa kết hợp cà phê
+
+</p>
+
+<br>
+
+<p>
+
+Quản lý sản phẩm • Đơn hàng • Khách hàng • Kho • Doanh thu
+
+</p>
+
+<br>
+
+<p>
+
+© 2025 Flower Coffee Shop
+
+</p>
+
+</footer>
+
+</body>
+
+</html>
